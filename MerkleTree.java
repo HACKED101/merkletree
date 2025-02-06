@@ -16,12 +16,10 @@ public class MerkleTree {
     public static String buildMerkleTree(List<String> dataBlocks) throws Exception {
         List<String> merkleTree = new ArrayList<>();
 
-        // Hash all data blocks (leaves of the tree)
         for (String data : dataBlocks) {
             merkleTree.add(getHash(data));
         }
 
-        // Build the tree by combining the hash pairs and hashing them
         while (merkleTree.size() > 1) {
             List<String> newLevel = new ArrayList<>();
             for (int i = 0; i < merkleTree.size(); i += 2) {
@@ -33,7 +31,6 @@ public class MerkleTree {
             merkleTree = newLevel;
         }
 
-        // The root of the tree is the only element left
         return merkleTree.get(0);
     }
 
